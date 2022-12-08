@@ -1,38 +1,26 @@
-import Directory from "./directory/directory .component";
-function App() {
-  const categories = [
-    {
-      id: 1,
-      title: "Hats",
-      imageUrl:
-        "https://nova-live.imgix.net//image-279c4697-8243-4951-96a5-ca3dbc80656b.png?q=60&fm=webp&fit=crop&fp-x=0.5&crop=focalpoint&fp-y=0.5&rot=0&fp-z=1&w=700&h=466",
-    },
-    {
-      id: 2,
-      title: "Jackets",
-      imageUrl:
-        "https://www.thepostcity.com/wp-content/uploads/2021/09/leather-jackets-collection.jpg",
-    },
-    {
-      id: 3,
-      title: "Sneakers",
-      imageUrl:
-        "https://static01.nyt.com/images/2021/05/27/fashion/24SNEAKERCOLORS-sacai-SUB/24SNEAKERCOLORS-sacai-SUB-superJumbo.jpg",
-    },
-    {
-      id: 4,
-      title: "Womens",
-      imageUrl:
-        "https://media.glamour.com/photos/61ae3506d56654ca38186abd/1:1/w_2000,h_2000,c_limit/best%20winter%20dresses.jpg",
-    },
-    {
-      id: 5,
-      title: "Mens",
-      imageUrl:
-        "https://staticg.sportskeeda.com/editor/2022/06/7212b-16557249225203-1920.jpg",
-    },
-  ];
-  return <Directory categories={categories}></Directory>;
-}
+import Home from "./routes/home/home.component";
+import Navigation from "./routes/navigation/navigation.component";
+import { Routes, Route, Outlet } from "react-router-dom";
+
+const Shop = () => {
+  return (
+    <div>
+      <h1>i am from Shop component</h1>
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Navigation></Navigation>}>
+        <Route index={true} element={<Home></Home>}></Route>
+        {/* Here in path="/home" index is added to tell that when in navigation <outlet> nothing is */}
+        {/* Added please add this route just at the place of <outlet> */}
+        <Route path="Shop" element={<Shop></Shop>}></Route>
+      </Route>
+    </Routes>
+  );
+};
 
 export default App;
