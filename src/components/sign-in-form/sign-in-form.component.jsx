@@ -1,5 +1,6 @@
-import { useState } from "react";
-// import { FirebaseError } from "firebase/app";
+import { useState,useContext } from "react";
+import { UserContext } from "../../contexts/user.context"; //to set user context
+
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
@@ -22,6 +23,10 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
+  // !!!!!!!!!!!!!!!!!setting context
+    const {setCurrentUser}=useContext(UserContext);
+  // !!!!!!!!!!!!!!!!!!!!!1
+
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -35,8 +40,13 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const response = signInAuthUserWithEmailAndPassword(email, password);
-      console.log(response);
+      const {user} = await signInAuthUserWithEmailAndPassword(email, password);
+      // console.log("from sign in component")
+      // console.log(response);
+      // !!!!!!!!!!!!!!!!!!!setting context
+      setCurrentUser(user)
+
+      // !!!!!!!!!!!!!!!!
       resetFormFields();
     } catch (error) {
       console.log(error);
