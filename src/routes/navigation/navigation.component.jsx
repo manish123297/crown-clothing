@@ -18,12 +18,12 @@ const Navigation = () => {
   console.log(currentUser)
 
 
-  const signOutHandler=async ()=>{ 
-    // const res= await signOutUser()
-    // console.log(res);
-    await signOutUser()
-    setCurrentUser(null)
-  } 
+  // const signOutHandler=async ()=>{ 
+  //   // const res= await signOutUser()
+  //   // console.log(res);
+  //   await signOutUser()
+  //   setCurrentUser(null)
+  // } 
   return (
     <Fragment>
       <div className='navigation'>
@@ -36,7 +36,7 @@ const Navigation = () => {
           </Link>
 {/* 3333333333333333333333333333333333333 */}
           {
-        currentUser ?(<span className="nav-link" onClick={signOutHandler}> SIGN OUT</span>)
+        currentUser ?(<span className="nav-link" onClick={signOutUser}> SIGN OUT</span>)
         :(<Link className='nav-link' to='/auth'>
         SIGN IN
       </Link>)
