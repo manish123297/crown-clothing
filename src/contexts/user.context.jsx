@@ -16,7 +16,7 @@ export const UserProvider=({children})=>{
 // =====================observer pattern
     useEffect(()=>{
    const unsubscribe= onAuthStateChangedListener((user)=>{
-   console.log(user)
+//    console.log(user)
    if(user){
 
         createUserDocumentFromAuth(user);

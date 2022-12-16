@@ -1,7 +1,11 @@
 import { Fragment  ,useContext} from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context'; //to get the current user -
+import { CartContext } from '../../contexts/cart.context';
 // -value that we already set in sign-in compnent 
+
+import CartIcon from '../../components/cart-icon/cart-icon.component';
+import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
 
@@ -12,10 +16,12 @@ import {signOutUser} from "../../utils/firebase/firebase.utils"
 
 import './navigation.styles.scss';
 
+
 const Navigation = () => {
   const {currentUser,setCurrentUser}=useContext(UserContext);
-  console.log("form navigatioin compoonet")
-  console.log(currentUser)
+  const {isCartOpen}=useContext(CartContext)
+  // console.log("form navigatioin compoonet")
+  // console.log(currentUser)
 
 
   // const signOutHandler=async ()=>{ 
@@ -42,8 +48,10 @@ const Navigation = () => {
       </Link>)
           }
 {/* 333333333333333333333333333333 */}
+          <CartIcon/>
           
         </div>
+       {isCartOpen&& <CartDropdown></CartDropdown>}
       </div>
       <Outlet />
     </Fragment>
